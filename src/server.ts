@@ -9,7 +9,7 @@ app.get('/transactions', async () => {
     id: crypto.randomUUID(),
     title: 'Transação de teste',
     description: 'Primeira transação',
-    type: 'income',
+    type: 'outcome',
     category: 'teste',
     price: 10000
   }).returning('*')

@@ -1,4 +1,5 @@
 import fastify from "fastify";
+import { knex } from "./database";
 
 const app = fastify();
 
@@ -7,6 +8,13 @@ const app = fastify();
 //Route test
 app.get('/test', () => {
   return 'Route test, This Server running at http://localhost:3333'
+});
+
+//Query está buscando todos os dados na tabela teste no banco de dados transactions
+app.get('/transactions', async () => {
+  const tables = await knex('teste').select('*')
+
+  return tables
 });
 
 app.listen({

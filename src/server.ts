@@ -1,30 +1,16 @@
 import fastify from "fastify";
-import crypto from 'node:crypto';
-import { knex } from "./databse";
 
 const app = fastify();
 
-app.get('/transactions', async () => {
-  const transactions = await knex('transactions').insert({
-    id: crypto.randomUUID(),
-    title: 'Transação de teste',
-    description: 'Primeira transação',
-    type: 'outcome',
-    category: 'teste',
-    price: 10000
-  }).returning('*')
+// MÉTODOS HTTP: GET, POST, PUT, PATCH, DELETE
 
-  return transactions
-})
-
-app.get('/transactions/results', async () => {
-  const transactions = await knex('transactions').select('*')
-
-  return transactions
-})
+//Route test
+app.get('/test', () => {
+  return 'Route test, This Server running at http://localhost:3333'
+});
 
 app.listen({
   port: 3333
 }).then(() => {
-  console.log('Server loadings complete')
+  console.log('Server loaded...')
 });

@@ -12,3 +12,9 @@
 
 # RNF - Requisitos Não Funcionais
 
+### Comandos úteis
+```
+npm run knex -- migrate:make migrations
+npm run knex -- migrate:latest -> Lê as migrations e executa
+npm run knex -- migrate:rollback -> desfaz as migrations
+```

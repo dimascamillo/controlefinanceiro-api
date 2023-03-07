@@ -1,4 +1,5 @@
 import fastify from "fastify";
+import crypto from 'node:crypto';
 import { knex } from "./database";
 
 const app = fastify();
@@ -12,10 +13,21 @@ app.get('/test', () => {
 
 //Query está buscando todos os dados na tabela teste no banco de dados transactions
 app.get('/transactions', async () => {
-  const tables = await knex('teste').select('*')
+  const tables = await knex('transactions').select('*')
 
   return tables
 });
+
+app.get('/teste-transactions', async () => {
+  const transactions = await knex('transactions').insert({
+    id: crypto.randomUUID(),
+    title: 'Transação de teste',
+    category: 'Transação de teste',
+    sessions_id: crypto.randomUUID(),
+  })
+  
+  return transactions
+})
 
 app.listen({
   port: 3333
